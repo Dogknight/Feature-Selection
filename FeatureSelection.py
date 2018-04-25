@@ -33,10 +33,10 @@ def obtaincol(df, delete):
 def prepareData():
     """prepare you dataset here"""
     df = pd.read_csv('data/train/trainb.csv')
-    df = df[~pd.isnull(df.is_trade)]
+    df = df[~pd.isnull(df.is_trade)]  #select feikong data
     item_category_list_unique = list(np.unique(df.item_category_list))
     df.item_category_list.replace(item_category_list_unique, list(np.arange(len(item_category_list_unique))), inplace=True)
-    return df
+    return df  #last process means transform the item_category_list to numbers
     
 def main(temp, clf, CrossMethod, RecordFolder, test = False):
     # set up the data set first
