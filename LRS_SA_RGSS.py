@@ -74,12 +74,12 @@ class LRS_SA_RGSS_combination():
         if 1:
             """This part is for the validation, modify it according to your demand"""
             for D in [24]:
-                T = (X.day != D)
+                T = (X.day != D)   #select day expect 24
                 X_train, X_test = X[T], X[~T]
                 X_train, X_test = X_train[selectcol], X_test[selectcol]
                 y_train, y_test = y[T], y[~T]
                 self.clf.fit(X_train,y_train, eval_set = [(X_train, y_train), (X_test, y_test)], eval_metric='logloss', verbose=False,early_stopping_rounds=200)
-                totaltest += self.LossFunction(y_test, self.clf.predict_proba(X_test)[:,1])
+                totaltest += self.LossFunction(y_test, self.clf.predict_proba(X_test)[:,1]) #there is no iteration?
             totaltest /= 1.0
             print('Mean loss: {}'.format(totaltest))
         if 1:
